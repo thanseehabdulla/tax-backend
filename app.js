@@ -97,7 +97,9 @@ app.post("/register", function(req, res, next) {
     // Store hash in your password DB.
     userHelper
       .createUser({ username, password })
-      .then(user => res.json({ user, msg: "account created successfully" }));
+      .then(user => res.json({ user, msg: "account created successfully" })).catch((e)=>{
+      res.status(401).json(e);
+      });
   });
 });
 
