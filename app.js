@@ -9,6 +9,8 @@ var createRouter = require('./routes/create');
 var getRouter = require('./routes/get');
 var updateRouter = require('./routes/update');
 var deleteRouter = require('./routes/delete');
+var cors = require('cors');
+const bodyParser = require('body-parser');
 
 var app = express();
 
@@ -17,16 +19,21 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(bodyParser.json());
+//parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use('/', indexRouter);
-app.use('/api/create', createRouter);
-app.use('/api/get', getRouter);
-app.use('/api/update', updateRouter);
-app.use('/api/delete', deleteRouter);
+app.use('/api/v1/create', createRouter);
+app.use('/api/v1/get', getRouter);
+app.use('/api/v1/update', updateRouter);
+app.use('/api/v1/delete', deleteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
