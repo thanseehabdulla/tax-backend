@@ -1,13 +1,13 @@
 var express = require("express");
 var router = express.Router();
-var connection = require("../configurations/db");
+var sequelize = require("../configurations/db");
 /* GET users listing. */
 router.get("/", function(req, res, next) {
-  connection.query("SELECT 1 + 1 AS solution", function(err, rows, fields) {
-    if (err) throw err;
 
-    res.send("The solution is tt : "+rows[0].solution);
-  });
+sequelize
+  .authenticate()
+  .then(() => res.send('Connection has been established successfully.'))
+  .catch(err => res.send('Unable to connect to the database:'+ err));
 });
 
 module.exports = router;
