@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var createRouter = require('./routes/create');
-var getRouter = require('./routes/get');
+var usersRouter = require('./routes/users');
 var updateRouter = require('./routes/update');
 var deleteRouter = require('./routes/delete');
 var cors = require('cors');
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
 app.use('/api/v1/create', createRouter);
-app.use('/api/v1/get', getRouter);
+app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/update', updateRouter);
 app.use('/api/v1/delete', deleteRouter);
 
