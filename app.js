@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // lets create our strategy for web token
 let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   console.log('payload received', jwt_payload);
-  let user = getUser({ id: jwt_payload.id });
+  let user = userHelper.getUser({ id: jwt_payload.id });
   if (user) {
     next(null, user);
   } else {
@@ -85,6 +85,11 @@ app.post('/login', async function(req, res, next) {
   }else{
      res.status(401).json({ msg: 'no body' });
   }
+});
+
+// protected route
+app.get('/protected', passport.authenticate('jwt', { session: false }), function(req, res) {
+res.json({ msg: 'Congrats! You are seeing this because you are authorized'});
 });
 
 app.use('/', indexRouter);
