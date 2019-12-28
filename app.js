@@ -66,28 +66,39 @@ app.use(passport.initialize());
 
 app.post("/login", async function(req, res, next) {
   res.setHeader("Content-Type", "text/json");
-  const { name, password } = req.body;
-  if (name && password) {
+  const { username, password } = req.body;
+  if (username && password) {
     // we get the user with the name and save the resolved promise
-    let user = await userHelper.getUser({ username: name });
+    let user = await userHelper.getUser({ username: username });
     if (!user) {
       res.status(401).json({ msg: "No such user found", user });
     }
     bcrypt.compare(password, user.password, function(err, res) {
       if (res) {
-      // from now on we’ll identify the user by the id and the id is
-      // the only personalized value that goes into our token
-      let payload = { id: user.id };
-      let token = jwt.sign(payload, jwtOptions.secretOrKey);
-      res.json({ msg: "ok", token: token });
-    } else {
-      res.status(401).json({ msg: "Password is incorrect" });
-    }
+        // from now on we’ll identify the user by the id and the id is
+        // the only personalized value that goes into our token
+        let payload = { id: user.id };
+        let token = jwt.sign(payload, jwtOptions.secretOrKey);
+        res.json({ msg: "ok", token: token });
+      } else {
+        res.status(401).json({ msg: "Password is incorrect" });
+      }
     });
-    
   } else {
     res.status(401).json({ msg: "no body" });
   }
+});
+
+const saltRounds = 10;
+
+app.post("/register", function(req, res, next) {
+  const { username, password } = req.body;
+  bcrypt.hash(password, saltRounds, function(err, password) {
+    // Store hash in your password DB.
+    userHelper
+      .createUser({ username, password })
+      .then(user => res.json({ user, msg: "account created successfully" }));
+  });
 });
 
 // protected route
@@ -103,7 +114,11 @@ app.get(
 
 app.use("/", indexRouter);
 app.use("/api/v1/create", createRouter);
-app.use("/api/v1/users", usersRouter);
+app.use(
+  "/api/v1/users",
+  passport.authenticate("jwt", { session: false }),
+  usersRouter
+);
 app.use("/api/v1/update", updateRouter);
 app.use("/api/v1/delete", deleteRouter);
 

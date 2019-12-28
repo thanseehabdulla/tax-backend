@@ -23,15 +23,4 @@ router.get("/getall", function(req, res, next) {
   userHelper.getAllUsers().then(user => res.json(user));
 });
 
-router.post("/", function(req, res, next) {
-  const { name, password } = req.body;
-  bcrypt.hash(password, saltRounds, function(err, hashpassword) {
-  // Store hash in your password DB.
-  userHelper
-    .createUser({ name, hashpassword })
-    .then(user => res.json({ user, msg: "account created successfully" }));
-});
-  
-});
-
 module.exports = router;
