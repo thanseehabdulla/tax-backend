@@ -5,10 +5,8 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
-var createRouter = require("./routes/create");
 var usersRouter = require("./routes/users");
-var updateRouter = require("./routes/update");
-var deleteRouter = require("./routes/delete");
+var invoicesRouter = require("./routes/invoice");
 var cors = require("cors");
 var jwt = require("jsonwebtoken");
 var userHelper = require("./controllers/user");
@@ -133,14 +131,18 @@ app.get(
 );
 
 app.use("/", indexRouter);
-app.use("/api/v1/create", createRouter);
+
 app.use(
   "/api/v1/users",
   passport.authenticate("jwt", { session: false }),
   usersRouter
 );
-app.use("/api/v1/update", updateRouter);
-app.use("/api/v1/delete", deleteRouter);
+
+app.use(
+  "/api/v1/invoices",
+  passport.authenticate("jwt", { session: false }),
+  invoicesRouter
+);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

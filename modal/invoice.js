@@ -26,9 +26,6 @@ var sequelize = require("../configurations/db");
       updatedAt: {
         field: "updated_at",
         type: Sequelize.DATE
-      },
-      address: {
-        type: Sequelize.STRING
       }
     },
     {
