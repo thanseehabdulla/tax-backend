@@ -103,6 +103,24 @@ app.post("/register", function(req, res, next) {
   });
 });
 
+app.post("/changepassword",passport.authenticate("jwt", { session: false }), function(req, res, next) {
+  const { username, password } = req.body;
+  bcrypt.hash(password, saltRounds, function(err, password) {
+    // Store hash in your password DB.
+    userHelper
+      .updateUser({ username, password })
+      .then(user => {
+        if(user[0])
+        res.json({ user, msg: "password changed successfully" })
+        else
+        res.json({ user, msg: "password change error" })
+        }
+        ).catch((e)=>{
+      res.status(401).json(e);
+      });
+  });
+});
+
 // protected route
 app.get(
   "/protected",
