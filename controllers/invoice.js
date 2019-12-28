@@ -1,10 +1,10 @@
 var Invoice = require('./../modal/invoice')
 
 // create some helper functions to work on the database
-const userHelper = { createInvoice : async ({ username, password }) => { 
+const userHelper = { createInvoice : async ({ ssn, tax, vat , amount }) => { 
   return await Invoice.create({ ssn:ssn, amount:amount, tax:tax, vat:vat });
 },
-updateInvoice : async ({ username, password }) => { 
+updateInvoice : async ({ ssn, tax, vat , amount }) => { 
   return await Invoice.update({amount:amount,tax:tax,vat:vat}, {where:{ssn:ssn }});
 },
 getAllInvoices : async () => {
