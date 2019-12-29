@@ -106,7 +106,7 @@ app.post("/changepassword",passport.authenticate("jwt", { session: false }), fun
   bcrypt.hash(password, saltRounds, function(err, password) {
     // Store hash in your password DB.
     userHelper
-      .updateUser({ username, password })
+      .updatePasswordUser({ username, password })
       .then(user => {
         if(user[0])
         res.json({ user, msg: "password changed successfully" })

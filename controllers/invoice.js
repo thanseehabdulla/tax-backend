@@ -7,6 +7,9 @@ const userHelper = { createInvoice : async ({ ssn, tax, vat , amount }) => {
 updateInvoice : async ({ ssn, tax, vat , amount }) => { 
   return await Invoice.update({amount:amount,tax:tax,vat:vat}, {where:{ssn:ssn }});
 },
+deleteInvoice : async ({ ssn }) => { 
+  return await Invoice.destroy({where:{ssn:ssn }});
+},
 getAllInvoices : async () => {
   return await Invoice.findAll();
 },
