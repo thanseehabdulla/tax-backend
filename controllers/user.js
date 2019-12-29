@@ -1,13 +1,12 @@
 var User = require("./../modal/user");
 
-// create some helper functions to work on the database
 const userHelper = {
   createUser: async ({ username, password }) => {
-    return await User.create({ username: username, password: password });
+    return await User.create({ username, password });
   },
   updatePasswordUser: async ({ username, password }) => {
     return await User.update(
-      { password: password },
+      { password },
       { where: { username: username } }
     );
   },

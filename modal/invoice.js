@@ -10,13 +10,27 @@ const User = sequelize.define(
       autoIncrement: true,
       allowNull: false
     },
+    customerName: {
+      field: "customer_name",
+      type: Sequelize.STRING
+    },
     ssn: {
       type: Sequelize.STRING
     },
-    amount: {
-      type: Sequelize.STRING
+    invoiceDate: {
+      field: "invoice_date",
+      type: Sequelize.DATE
     },
-    tax: {
+    amount: {
+      type: Sequelize.FLOAT
+    },
+    vat: {
+      type: Sequelize.FLOAT
+    },
+    total: {
+      type: Sequelize.FLOAT
+    },
+    status: {
       type: Sequelize.STRING
     },
     createdAt: {

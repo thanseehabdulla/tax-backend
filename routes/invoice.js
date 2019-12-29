@@ -34,12 +34,25 @@ router.post("/create", function(req, res, next) {
 });
 
 router.post("/update", function(req, res, next) {
-  const { ssn, tax, vat, amount } = req.body;
+  const { ssn, invoice_date,customer_name, vat, amount } = req.body;
   invoiceHelper
-    .updateInvoice({ ssn, tax, vat, amount })
+    .updateInvoice({ ssn, invoice_date,customer_name, vat, amount })
     .then(invoice => {
       if (invoice[0]) res.json({ invoice, msg: "invoice updated successfully" });
       else res.json({ invoice, msg: "invoice update error" });
+    })
+    .catch(e => {
+      res.status(401).json(e);
+    });
+});
+
+router.post("/statuschange", function(req, res, next) {
+  const { ssn, status } = req.body;
+  invoiceHelper
+    .updateStatusInvoice({ ssn, status })
+    .then(invoice => {
+      if (invoice[0]) res.json({ invoice, msg: "invoice modified successfully" });
+      else res.json({ invoice, msg: "invoice modify error" });
     })
     .catch(e => {
       res.status(401).json(e);

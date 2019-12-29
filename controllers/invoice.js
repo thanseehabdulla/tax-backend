@@ -1,23 +1,47 @@
-var Invoice = require('./../modal/invoice')
+var Invoice = require("./../modal/invoice");
 
-// create some helper functions to work on the database
-const userHelper = { createInvoice : async ({ ssn, tax, vat , amount }) => { 
-  return await Invoice.create({ ssn:ssn, amount:amount, tax:tax, vat:vat });
-},
-updateInvoice : async ({ ssn, tax, vat , amount }) => { 
-  return await Invoice.update({amount:amount,tax:tax,vat:vat}, {where:{ssn:ssn }});
-},
-deleteInvoice : async ({ ssn }) => { 
-  return await Invoice.destroy({where:{ssn:ssn }});
-},
-getAllInvoices : async () => {
-  return await Invoice.findAll();
-},
-getInvoice : async obj => {
-  return await Invoice.findOne({
-  where: obj,
-})
-}
+const userHelper = {
+  createInvoice: async ({
+    ssn,
+    invoice_date,
+    vat,
+    amount,
+    total,
+    customer_name
+  }) => {
+    return await Invoice.create({
+      ssn,
+      amount,
+      invoice_date,
+      vat,
+      total,
+      customer_name
+    });
+  },
+  updateInvoice: async ({
+    ssn,
+    invoice_date,
+    customer_name,
+    vat,
+    amount,
+    total
+  }) => {
+    return await Invoice.update(
+      { amount, invoice_date, vat, customer_name, total },
+      { where: { ssn: ssn } }
+    );
+  },
+  deleteInvoice: async ({ ssn }) => {
+    return await Invoice.destroy({ where: { ssn: ssn } });
+  },
+  getAllInvoices: async () => {
+    return await Invoice.findAll();
+  },
+  getInvoice: async obj => {
+    return await Invoice.findOne({
+      where: obj
+    });
+  }
 };
 
-module.exports = userHelper
+module.exports = userHelper;
