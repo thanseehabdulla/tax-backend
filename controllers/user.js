@@ -11,9 +11,18 @@ const userHelper = {
       { where: { username: username } }
     );
   },
-  updateUser: async ({ username, password }) => {
+  updateUser: async ({
+    username,
+    first_name,
+    last_name,
+    usertype,
+    email,
+    phone,
+    status,
+    address
+  }) => {
     return await User.update(
-      { password: password },
+      { first_name, last_name, usertype, email, phone, status, address },
       { where: { username: username } }
     );
   },

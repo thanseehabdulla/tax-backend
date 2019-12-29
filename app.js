@@ -35,7 +35,7 @@ app.set("view engine", "pug");
 app.use(logger("dev"));
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // for parsing application/json
 app.use(bodyParser.json());
@@ -63,7 +63,6 @@ passport.use(strategy);
 app.use(passport.initialize());
 
 app.post("/login", async function(req, res, next) {
-  res.setHeader("Content-Type", "text/json");
   const { username, password } = req.body;
   if (username && password) {
     // we get the user with the name and save the resolved promise
@@ -71,8 +70,8 @@ app.post("/login", async function(req, res, next) {
     if (!user) {
       res.status(401).json({ msg: "No such user found", user });
     }
-    bcrypt.compare(password, user.password, function(err, res) {
-      if (res) {
+    bcrypt.compare(password, user.password, function(err, result) {
+      if (result) {
         // from now on we’ll identify the user by the id and the id is
         // the only personalized value that goes into our token
         let payload = { id: user.id };
