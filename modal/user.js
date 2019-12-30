@@ -5,46 +5,52 @@ const User = sequelize.define(
   "user",
   {
     id: {
-      type: Sequelize.INTEGER,
+      field: "usr_id",
+     type: Sequelize.BIGINT(11),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    username: {
+    usrSsn: {
+      field: "usr_ssn",
       type: Sequelize.STRING
     },
-    password: {
+    usrEmail: {
+      field: "usr_email",
       type: Sequelize.STRING
     },
-    usertype: {
+    usrPassword: {
+      field: "usr_password",
       type: Sequelize.STRING
     },
-    email: {
+    usrName: {
+      field: "usr_name",
       type: Sequelize.STRING
     },
-    phone: {
+    usrType: {
+      field: "usr_type",
+      type: Sequelize.BIGINT(11)
+    },
+     usrApiPassword: {
+      field: "usr_api_password",
       type: Sequelize.STRING
     },
-    createdAt: {
-      field: "created_at",
+     usrIsactive: {
+      field: "usr_isactive",
+      type: Sequelize.STRING
+    },
+     usrStatus: {
+      field: "usr_status",
+      type: Sequelize.STRING
+    },
+    usrCreated: {
+      field: "usr_created",
       type: Sequelize.DATE
     },
-    updatedAt: {
-      field: "updated_at",
+    usrUpdated: {
+      field: "usrUpdated",
       type: Sequelize.DATE
     },
-    status: {
-      type: Sequelize.INTEGER
-    },
-    first_name: {
-      type: Sequelize.STRING
-    },
-    last_name: {
-      type: Sequelize.STRING
-    },
-    address: {
-      type: Sequelize.STRING
-    }
   },
   {
     freezeTableName: true,

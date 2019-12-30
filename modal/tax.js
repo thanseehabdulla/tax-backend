@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 var sequelize = require("../configurations/db");
 
-const tax = sequelize.define(
-  "invoice",
+const Tax = sequelize.define(
+  "tax",
   {
     id: {
       field: "tax_id",
@@ -38,4 +38,4 @@ const tax = sequelize.define(
   }
 );
 
-module.exports = User;
+module.exports = Tax;
