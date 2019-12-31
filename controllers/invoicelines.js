@@ -1,6 +1,6 @@
 var Invoice = require("./../modal/invoice_lines");
 
-const userHelper = {
+const invoiceHelper = {
   createInvoice: async ({
     inl_product,
     inl_quantity,
@@ -14,14 +14,14 @@ const userHelper = {
   }) => {
     return await Invoice.create({
       inl_product,
-    inl_quantity,
-    inl_price,
-    inl_tax_id,
-    inl_discount_perc,
-    inl_net_price,
-    inl_isdelete,
-    inl_created_by,
-    inl_updated_by
+      inl_quantity,
+      inl_price,
+      inl_tax_id,
+      inl_discount_perc,
+      inl_net_price,
+      inl_isdelete,
+      inl_created_by,
+      inl_updated_by
     });
   },
   updateInvoice: async ({
@@ -39,14 +39,14 @@ const userHelper = {
     return await Invoice.update(
       {
         inl_product,
-    inl_quantity,
-    inl_price,
-    inl_tax_id,
-    inl_discount_perc,
-    inl_net_price,
-    inl_isdelete,
-    inl_created_by,
-    inl_updated_by
+        inl_quantity,
+        inl_price,
+        inl_tax_id,
+        inl_discount_perc,
+        inl_net_price,
+        inl_isdelete,
+        inl_created_by,
+        inl_updated_by
       },
       { where: { inl_id: inl_id } }
     );
@@ -64,4 +64,4 @@ const userHelper = {
   }
 };
 
-module.exports = userHelper;
+module.exports = invoiceHelper;

@@ -1,6 +1,6 @@
 var Invoice = require("./../modal/invoice");
 
-const userHelper = {
+const invoiceHelper = {
   createInvoice: async ({
     inv_user_id,
     inv_customer_ssn,
@@ -98,4 +98,4 @@ const userHelper = {
   }
 };
 
-module.exports = userHelper;
+module.exports = invoiceHelper;
