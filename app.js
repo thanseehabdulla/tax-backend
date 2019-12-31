@@ -6,6 +6,7 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var customersRouter = require("./routes/customers");
 var invoicesRouter = require("./routes/invoice");
 var cors = require("cors");
 var jwt = require("jsonwebtoken");
@@ -157,6 +158,12 @@ app.use(
   "/api/v1/users",
   passport.authenticate("jwt", { session: false }),
   usersRouter
+);
+
+app.use(
+  "/api/v1/customers",
+  passport.authenticate("jwt", { session: false }),
+  customersRouter
 );
 
 app.use(

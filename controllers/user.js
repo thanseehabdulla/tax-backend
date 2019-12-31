@@ -31,7 +31,7 @@ const userHelper = {
   updateUser: async ({
     usr_name,
     usr_ssn,
-    last_name,
+    usr_email,
     usr_type,
     usr_isactive,
     usr_status
@@ -40,8 +40,6 @@ const userHelper = {
       {
         usr_name,
         usr_ssn,
-        last_name,
-        email,
         usr_type,
         usr_isactive,
         usr_status
