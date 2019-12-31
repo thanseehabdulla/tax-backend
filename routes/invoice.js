@@ -18,15 +18,49 @@ router.get("/getall", function(req, res, next) {
   invoiceHelper.getAllInvoices().then(invoice => res.json(invoice));
 });
 
-router.get("/get/:ssn", function(req, res, next) {
-  const {ssn} = req.params.username;
-  invoiceHelper.getInvoice({ssn:ssn}).then(invoice => res.json(invoice));
+router.get("/get/:id", function(req, res, next) {
+  const { inv_id } = req.params.id;
+  invoiceHelper
+    .getInvoice({ inv_id: inv_id })
+    .then(invoice => res.json(invoice));
 });
 
 router.post("/create", function(req, res, next) {
-  const { ssn, tax, vat, amount } = req.body;
+  const {
+    inv_user_id,
+    inv_customer_ssn,
+    inv_customer_name,
+    inv_cum_id,
+    inv_type,
+    inv_crc_id,
+    inv_due_date,
+    inv_deadline_date,
+    inv_total,
+    inv_note,
+    inv_desc,
+    inv_status,
+    inv_isdelete,
+    inv_created,
+    inv_updated
+  } = req.body;
   invoiceHelper
-    .createInvoice({ ssn, tax, vat, amount })
+    .createInvoice({
+      inv_user_id,
+      inv_customer_ssn,
+      inv_customer_name,
+      inv_cum_id,
+      inv_type,
+      inv_crc_id,
+      inv_due_date,
+      inv_deadline_date,
+      inv_total,
+      inv_note,
+      inv_desc,
+      inv_status,
+      inv_isdelete,
+      inv_created,
+      inv_updated
+    })
     .then(invoice => res.json({ invoice, msg: "invoice created successfully" }))
     .catch(e => {
       res.status(401).json(e);
@@ -34,11 +68,46 @@ router.post("/create", function(req, res, next) {
 });
 
 router.post("/update", function(req, res, next) {
-  const { ssn, invoice_date,customer_name, vat, amount } = req.body;
+  const {
+    inv_id,
+    inv_user_id,
+    inv_customer_ssn,
+    inv_customer_name,
+    inv_cum_id,
+    inv_type,
+    inv_crc_id,
+    inv_due_date,
+    inv_deadline_date,
+    inv_total,
+    inv_note,
+    inv_desc,
+    inv_status,
+    inv_isdelete,
+    inv_created,
+    inv_updated
+  } = req.body;
   invoiceHelper
-    .updateInvoice({ ssn, invoice_date,customer_name, vat, amount })
+    .updateInvoice({
+      inv_id,
+      inv_user_id,
+      inv_customer_ssn,
+      inv_customer_name,
+      inv_cum_id,
+      inv_type,
+      inv_crc_id,
+      inv_due_date,
+      inv_deadline_date,
+      inv_total,
+      inv_note,
+      inv_desc,
+      inv_status,
+      inv_isdelete,
+      inv_created,
+      inv_updated
+    })
     .then(invoice => {
-      if (invoice[0]) res.json({ invoice, msg: "invoice updated successfully" });
+      if (invoice[0])
+        res.json({ invoice, msg: "invoice updated successfully" });
       else res.json({ invoice, msg: "invoice update error" });
     })
     .catch(e => {
@@ -47,11 +116,12 @@ router.post("/update", function(req, res, next) {
 });
 
 router.post("/statuschange", function(req, res, next) {
-  const { ssn, status } = req.body;
+  const { inv_id, inv_status } = req.body;
   invoiceHelper
-    .updateStatusInvoice({ ssn, status })
+    .updateInvoiceStatus({ inv_id, inv_status })
     .then(invoice => {
-      if (invoice[0]) res.json({ invoice, msg: "invoice modified successfully" });
+      if (invoice[0])
+        res.json({ invoice, msg: "invoice modified successfully" });
       else res.json({ invoice, msg: "invoice modify error" });
     })
     .catch(e => {
@@ -60,11 +130,12 @@ router.post("/statuschange", function(req, res, next) {
 });
 
 router.post("/delete", function(req, res, next) {
-  const { ssn } = req.body;
+  const { inv_id } = req.body;
   invoiceHelper
-    .deleteInvoice({ ssn })
+    .deleteInvoice({ inv_id })
     .then(invoice => {
-      if (invoice[0]) res.json({ invoice, msg: "invoice deleted successfully" });
+      if (invoice[0])
+        res.json({ invoice, msg: "invoice deleted successfully" });
       else res.json({ invoice, msg: "invoice delete error" });
     })
     .catch(e => {

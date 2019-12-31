@@ -2,37 +2,91 @@ var Invoice = require("./../modal/invoice");
 
 const userHelper = {
   createInvoice: async ({
-    ssn,
-    invoice_date,
-    vat,
-    amount,
-    total,
-    customer_name
+    inv_user_id,
+    inv_customer_ssn,
+    inv_customer_name,
+    inv_cum_id,
+    inv_type,
+    inv_crc_id,
+    inv_due_date,
+    inv_deadline_date,
+    inv_total,
+    inv_note,
+    inv_desc,
+    inv_status,
+    inv_isdelete,
+    inv_created,
+    inv_updated
   }) => {
     return await Invoice.create({
-      ssn,
-      amount,
-      invoice_date,
-      vat,
-      total,
-      customer_name
+      inv_user_id,
+      inv_customer_ssn,
+      inv_customer_name,
+      inv_cum_id,
+      inv_type,
+      inv_crc_id,
+      inv_due_date,
+      inv_deadline_date,
+      inv_total,
+      inv_note,
+      inv_desc,
+      inv_status,
+      inv_isdelete,
+      inv_created,
+      inv_updated
     });
   },
   updateInvoice: async ({
-    ssn,
-    invoice_date,
-    customer_name,
-    vat,
-    amount,
-    total
+    inv_id,
+    inv_user_id,
+    inv_customer_ssn,
+    inv_customer_name,
+    inv_cum_id,
+    inv_type,
+    inv_crc_id,
+    inv_due_date,
+    inv_deadline_date,
+    inv_total,
+    inv_note,
+    inv_desc,
+    inv_status,
+    inv_isdelete,
+    inv_created,
+    inv_updated
   }) => {
     return await Invoice.update(
-      { amount, invoice_date, vat, customer_name, total },
-      { where: { ssn: ssn } }
+      {
+        inv_user_id,
+        inv_customer_ssn,
+        inv_customer_name,
+        inv_cum_id,
+        inv_type,
+        inv_crc_id,
+        inv_due_date,
+        inv_deadline_date,
+        inv_total,
+        inv_note,
+        inv_desc,
+        inv_status,
+        inv_isdelete,
+        inv_created,
+        inv_updated
+      },
+      { where: { inv_id: inv_id } }
     );
   },
-  deleteInvoice: async ({ ssn }) => {
-    return await Invoice.destroy({ where: { ssn: ssn } });
+  updateInvoiceStatus: async ({
+    inv_id,
+    inv_status
+  }) => {
+    return await Invoice.update(
+      {
+        inv_status
+      { where: { inv_id: inv_id } }
+    );
+  }
+  deleteInvoice: async ({ inv_id }) => {
+    return await Invoice.destroy({ where: { inv_id: inv_id } });
   },
   getAllInvoices: async () => {
     return await Invoice.findAll();
