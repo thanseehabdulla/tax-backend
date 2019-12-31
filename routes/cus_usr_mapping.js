@@ -25,7 +25,7 @@ router.get("/get/:id", function(req, res, next) {
 
 router.post("/update", function(req, res, next) {
   const { cum_id, cum_cus_id, cum_usr_id } = req.body;
-  customerHelper
+  currencyHelper
     .updateCum({
       cum_id,
       cum_cus_id,

@@ -27,7 +27,7 @@ router.get("/get/:id", function(req, res, next) {
 
 router.post("/update", function(req, res, next) {
   const { crc_id, crc_code, crc_name } = req.body;
-  customerHelper
+  currencyHelper
     .updateCurrency({
       crc_id,
       crc_code,
