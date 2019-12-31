@@ -18,32 +18,30 @@ router.get("/getall", function(req, res, next) {
   userHelper.getAllUsers().then(user => res.json(user));
 });
 
-router.get("/get/:username", function(req, res, next) {
-  const { username } = req.params.username;
-  userHelper.getUser({ username: username }).then(user => res.json(user));
+router.get("/get/:id", function(req, res, next) {
+  const usr_id = req.params.id;
+  userHelper.getUser({ usr_id: usr_id }).then(user => res.json(user));
 });
 
 router.post("/update", function(req, res, next) {
   const {
-    username,
-    first_name,
+    usr_name,
+    usr_ssn,
     last_name,
-    usertype,
-    email,
-    phone,
-    status,
-    address
+    usr_email,
+    usr_type,
+    usr_isactive,
+    usr_status
   } = req.body;
   userHelper
     .updateUser({
-      username,
-      first_name,
+      usr_name,
+      usr_ssn,
       last_name,
-      usertype,
-      email,
-      phone,
-      status,
-      address
+      usr_email,
+      usr_type,
+      usr_isactive,
+      usr_status
     })
     .then(user => {
       if (user[0]) res.json({ user, msg: "user updated successfully" });

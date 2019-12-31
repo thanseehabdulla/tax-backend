@@ -28,14 +28,29 @@ const userHelper = {
       { where: { usr_email: usr_email } }
     );
   },
-  updateUser: async ({ usr_name, usertype, email, phone, status, address }) => {
+  updateUser: async ({
+    usr_name,
+    usr_ssn,
+    last_name,
+    usr_type,
+    usr_isactive,
+    usr_status
+  }) => {
     return await User.update(
-      { first_name, last_name, usertype, email, phone, status, address },
-      { where: { usr_name: usr_name } }
+      {
+        usr_name,
+        usr_ssn,
+        last_name,
+        email,
+        usr_type,
+        usr_isactive,
+        usr_status
+      },
+      { where: { usr_email: usr_email } }
     );
   },
-  deleteUser: async ({ usr_name }) => {
-    return await User.destroy({ where: { usr_name: usr_name } });
+  deleteUser: async ({ usr_email }) => {
+    return await User.destroy({ where: { usr_email: usr_email } });
   },
   getAllUsers: async () => {
     return await User.findAll();
