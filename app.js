@@ -11,6 +11,7 @@ var currencyRouter = require("./routes/currency");
 var invoicesRouter = require("./routes/invoice");
 var invoicelinesRouter = require("./routes/invoicelines");
 var taxRouter = require("./routes/tax");
+var cumCusRouter = require("./routes/cus_usr_mapping");
 var cors = require("cors");
 var jwt = require("jsonwebtoken");
 var userHelper = require("./controllers/user");
@@ -179,6 +180,12 @@ app.use(
   "/api/v1/tax",
   passport.authenticate("jwt", { session: false }),
   taxRouter
+);
+
+app.use(
+  "/api/v1/cumcus",
+  passport.authenticate("jwt", { session: false }),
+  cumCusRouter
 );
 
 app.use(
