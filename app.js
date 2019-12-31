@@ -63,18 +63,18 @@ passport.use(strategy);
 app.use(passport.initialize());
 
 app.post("/login", async function(req, res, next) {
-  const { username, password } = req.body;
-  if (username && password) {
+  const { usr_email, usr_password } = req.body;
+  if (usr_email && usr_password) {
     // we get the user with the name and save the resolved promise
-    let user = await userHelper.getUser({ username: username });
+    let user = await userHelper.getUser({ usr_email: usr_email });
     if (!user) {
       res.status(401).json({ msg: "No such user found", user });
     }
-    bcrypt.compare(password, user.password, function(err, result) {
+    bcrypt.compare(usr_password, user.usr_password, function(err, result) {
       if (result) {
         // from now on we’ll identify the user by the id and the id is
         // the only personalized value that goes into our token
-        let payload = { id: user.id };
+        let payload = { id: user.usr_id };
         let token = jwt.sign(payload, jwtOptions.secretOrKey);
         res.json({ msg: "ok", token: token });
       } else {
@@ -89,34 +89,56 @@ app.post("/login", async function(req, res, next) {
 const saltRounds = 10;
 
 app.post("/register", function(req, res, next) {
-  const { username, password } = req.body;
-  bcrypt.hash(password, saltRounds, function(err, password) {
+  const {
+    usr_name,
+    usr_password,
+    usr_api_password,
+    usr_ssn,
+    usr_email,
+    usr_type,
+    usr_isactive,
+    usr_status
+  } = req.body;
+  bcrypt.hash(usr_password, saltRounds, function(err, usr_password) {
     // Store hash in your password DB.
+
     userHelper
-      .createUser({ username, password })
-      .then(user => res.json({ user, msg: "account created successfully" })).catch((e)=>{
-      res.status(401).json(e);
+      .createUser({
+        usr_name,
+        usr_password,
+        usr_api_password,
+        usr_ssn,
+        usr_email,
+        usr_type,
+        usr_isactive,
+        usr_status
+      })
+      .then(user => res.json({ user, msg: "account created successfully" }))
+      .catch(e => {
+        res.status(401).json(e);
       });
   });
 });
 
-app.post("/changepassword",passport.authenticate("jwt", { session: false }), function(req, res, next) {
-  const { username, password } = req.body;
-  bcrypt.hash(password, saltRounds, function(err, password) {
-    // Store hash in your password DB.
-    userHelper
-      .updatePasswordUser({ username, password })
-      .then(user => {
-        if(user[0])
-        res.json({ user, msg: "password changed successfully" })
-        else
-        res.json({ user, msg: "password change error" })
-        }
-        ).catch((e)=>{
-      res.status(401).json(e);
-      });
-  });
-});
+app.post(
+  "/changepassword",
+  passport.authenticate("jwt", { session: false }),
+  function(req, res, next) {
+    const { username, password } = req.body;
+    bcrypt.hash(password, saltRounds, function(err, password) {
+      // Store hash in your password DB.
+      userHelper
+        .updatePasswordUser({ username, password })
+        .then(user => {
+          if (user[0]) res.json({ user, msg: "password changed successfully" });
+          else res.json({ user, msg: "password change error" });
+        })
+        .catch(e => {
+          res.status(401).json(e);
+        });
+    });
+  }
+);
 
 // protected route
 app.get(

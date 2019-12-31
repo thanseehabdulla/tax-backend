@@ -1,32 +1,41 @@
 var User = require("./../modal/user");
 
 const userHelper = {
-  createUser: async ({ username, password }) => {
-    return await User.create({ username, password });
+  createUser: async ({
+    usr_name,
+    usr_password,
+    usr_api_password,
+    usr_ssn,
+    usr_email,
+    usr_type,
+    usr_isactive,
+    usr_status
+  }) => {
+    return await User.create({
+      usr_name,
+      usr_password,
+      usr_api_password,
+      usr_ssn,
+      usr_email,
+      usr_type,
+      usr_isactive,
+      usr_status
+    });
   },
-  updatePasswordUser: async ({ username, password }) => {
+  updatePasswordUser: async ({ usr_name, usr_password, usr_api_password }) => {
     return await User.update(
-      { password },
-      { where: { username: username } }
+      { usr_password, usr_api_password },
+      { where: { usr_name: usr_name } }
     );
   },
-  updateUser: async ({
-    username,
-    first_name,
-    last_name,
-    usertype,
-    email,
-    phone,
-    status,
-    address
-  }) => {
+  updateUser: async ({ usr_name, usertype, email, phone, status, address }) => {
     return await User.update(
       { first_name, last_name, usertype, email, phone, status, address },
-      { where: { username: username } }
+      { where: { usr_name: usr_name } }
     );
   },
-  deleteUser: async ({ username }) => {
-    return await User.destroy({ where: { username: username } });
+  deleteUser: async ({ usr_name }) => {
+    return await User.destroy({ where: { usr_name: usr_name } });
   },
   getAllUsers: async () => {
     return await User.findAll();
