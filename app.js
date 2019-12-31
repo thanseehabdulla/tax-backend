@@ -124,11 +124,11 @@ app.post(
   "/changepassword",
   passport.authenticate("jwt", { session: false }),
   function(req, res, next) {
-    const { username, password } = req.body;
-    bcrypt.hash(password, saltRounds, function(err, password) {
+    const { usr_email, usr_password, usr_api_password } = req.body;
+    bcrypt.hash(usr_password, saltRounds, function(err, usr_password) {
       // Store hash in your password DB.
       userHelper
-        .updatePasswordUser({ username, password })
+        .updatePasswordUser({ usr_email, usr_password, usr_api_password })
         .then(user => {
           if (user[0]) res.json({ user, msg: "password changed successfully" });
           else res.json({ user, msg: "password change error" });

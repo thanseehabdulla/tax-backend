@@ -22,10 +22,10 @@ const userHelper = {
       usr_status
     });
   },
-  updatePasswordUser: async ({ usr_name, usr_password, usr_api_password }) => {
+  updatePasswordUser: async ({ usr_email, usr_password, usr_api_password }) => {
     return await User.update(
       { usr_password, usr_api_password },
-      { where: { usr_name: usr_name } }
+      { where: { usr_email: usr_email } }
     );
   },
   updateUser: async ({ usr_name, usertype, email, phone, status, address }) => {
