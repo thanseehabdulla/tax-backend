@@ -4,30 +4,30 @@ var sequelize = require("../configurations/db");
 const Tax = sequelize.define(
   "tax",
   {
-    id: {
+    tax_id: {
       field: "tax_id",
       type: Sequelize.BIGINT(11),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    taxName: {
+    tax_name: {
       field: "tax_name",
       type: Sequelize.STRING
     },
-    taxPerc: {
+    tax_perc: {
       field: "tax_perc",
       type: Sequelize.DECIMAL(10, 5)
     },
-    taxIsactive: {
+    tax_isactive: {
       field: "tax_isactive",
       type: Sequelize.STRING
     },
-    taxCreated: {
+    tax_created: {
       field: "tax_created",
       type: Sequelize.DATE
     },
-    taxUpdated: {
+    tax_updated: {
       field: "tax_updated",
       type: Sequelize.DATE
     },

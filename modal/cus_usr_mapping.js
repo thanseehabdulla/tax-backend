@@ -4,14 +4,14 @@ var sequelize = require("../configurations/db");
 const cusUsrMapping = sequelize.define(
   "cus_usr_mapping",
   {
-    id: {
+    cum_id: {
       field: "cum_id",
       type: Sequelize.BIGINT(11),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    cumCusId: {
+    cum_cus_id: {
       field: "cum_cus_id",
       type: Sequelize.BIGINT(11),
        references: {
@@ -19,7 +19,7 @@ const cusUsrMapping = sequelize.define(
           key: 'usr_id', // 'id' refers to column name in persons table
        }
     },
-    cumUsrId: {
+    cum_usr_id: {
       field: "cum_usr_id",
       type: Sequelize.BIGINT(11),
        references: {

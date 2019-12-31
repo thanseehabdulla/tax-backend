@@ -4,26 +4,26 @@ var sequelize = require("../configurations/db");
 const invoiceLines = sequelize.define(
   "invoice_lines",
   {
-    id: {
+    inl_id: {
       field: "inl_id",
       type: Sequelize.BIGINT(11),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    inlProduct: {
+    inl_product: {
       field: "inl_product",
       type: Sequelize.STRING
     },
-    inlQuantity: {
+    inl_quantity: {
       field: "inl_quantity",
       type: Sequelize.DECIMAL(10, 5)
     },
-    inlPrice: {
+    inl_price: {
       field: "inl_price",
       type: Sequelize.DECIMAL(10, 5)
     },
-    inlTaxId: {
+    inl_tax_id: {
       field: "inl_tax_id",
       type: Sequelize.BIGINT(11),
        references: {
@@ -31,19 +31,19 @@ const invoiceLines = sequelize.define(
           key: 'tax_id', // 'id' refers to column name in persons table
        }
     },
-    inlDiscountPerc: {
+    inl_discount_perc: {
       field: "inl_discount_perc",
       type: Sequelize.DECIMAL(10, 5)
     },
-    inlNetPrice: {
+    inl_net_price: {
       field: "inl_net_price",
       type: Sequelize.DECIMAL(10, 5)
     },
-    inlIsdelete: {
+    inl_isdelete: {
       field: "inl_isdelete",
       type: Sequelize.STRING
     },
-    inlCreatedBy: {
+    inl_created_by: {
       field: "inl_created_by",
       type: Sequelize.BIGINT(11),
        references: {
@@ -51,7 +51,7 @@ const invoiceLines = sequelize.define(
           key: 'usr_id', // 'id' refers to column name in persons table
        }
     },
-    inlCreated: {
+    inl_created: {
       field: "inl_created",
       type: Sequelize.DATE
     },
@@ -63,7 +63,7 @@ const invoiceLines = sequelize.define(
           key: 'usr_id', // 'id' refers to column name in persons table
        }
     },
-    inlUpdated: {
+    inl_updated: {
       field: "inl_updated",
       type: Sequelize.DATE
     },

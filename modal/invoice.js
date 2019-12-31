@@ -4,14 +4,14 @@ var sequelize = require("../configurations/db");
 const Invoice = sequelize.define(
   "invoice",
   {
-    id: {
+    inv_id: {
       field: "inv_id",
       type: Sequelize.BIGINT(11),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    invUserId: {
+    inv_user_id: {
       field: "inv_user_id",
       type: Sequelize.BIGINT(11),
        references: {
@@ -19,15 +19,15 @@ const Invoice = sequelize.define(
           key: 'usr_id', // 'id' refers to column name in persons table
        }
     },
-    invCustomerSsn: {
+    inv_customer_ssn: {
       field: "inv_customer_ssn",
       type: Sequelize.STRING
     },
-    invCustomerName: {
+    inv_customer_name: {
       field: "inv_customer_name",
       type: Sequelize.STRING
     },
-    invCumId: {
+    inv_cum_id: {
       field: "inv_cum_id",
       type: Sequelize.STRING,
        references: {
@@ -35,11 +35,11 @@ const Invoice = sequelize.define(
           key: 'cus_id', // 'id' refers to column name in persons table
        }
     },
-    invType: {
+    inv_type: {
       field: "inv_type",
       type: Sequelize.STRING
     },
-    invCrcId: {
+    inv_crc_id: {
       field: "inv_crc_id",
       type: Sequelize.BIGINT(11),
        references: {
@@ -47,39 +47,39 @@ const Invoice = sequelize.define(
           key: 'cus_id', // 'id' refers to column name in persons table
        }
     },
-    invInvoiceDate: {
+    inv_invoice_date: {
       field: "inv_invoice_date",
       type: Sequelize.DATE
     },
-    invDueDate: {
+    inv_due_date: {
       field: "inv_due_date",
       type: Sequelize.DATE
     },
-    invDeadlineDate: {
+    inv_deadline_date: {
       field: "inv_deadline_date",
       type: Sequelize.DATE
     },
-    invTotal: {
+    inv_total: {
       field: "inv_total",
       type: Sequelize.DECIMAL(10, 5)
     },
-    invNote: {
+    inv_note: {
       field: "inv_note",
       type: Sequelize.STRING
     },
-    invDesc: {
+    inv_desc: {
       field: "inv_desc",
       type: Sequelize.STRING
     },
-    invStatus: {
+    inv_status: {
       field: "inv_status",
       type: Sequelize.STRING
     },
-    invIsdelete: {
+    inv_isdelete: {
       field: "inv_isdelete",
       type: Sequelize.STRING
     },
-    invCreatedBy: {
+    inv_created_by: {
       field: "inv_created_by",
       type: Sequelize.BIGINT(11),
        references: {
@@ -87,7 +87,7 @@ const Invoice = sequelize.define(
           key: 'usr_id', // 'id' refers to column name in persons table
        }
     },
-    invCreated: {
+    inv_created: {
       field: "inv_created",
       type: Sequelize.DATE
     },
@@ -99,7 +99,7 @@ const Invoice = sequelize.define(
           key: 'usr_id', // 'id' refers to column name in persons table
        }
     },
-    invUpdated: {
+    inv_updated: {
       field: "inv_updated",
       type: Sequelize.DATE
     },

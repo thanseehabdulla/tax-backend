@@ -4,34 +4,34 @@ var sequelize = require("../configurations/db");
 const Customer = sequelize.define(
   "customer",
   {
-    id: {
+    cus_id: {
       field: "cus_id",
      type: Sequelize.BIGINT(11),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    cusSsn: {
+    cus_ssn: {
       field: "cus_ssn",
       type: Sequelize.STRING
     },
-    cusName: {
+    cus_name: {
       field: "cus_name",
       type: Sequelize.STRING
     },
-    cusAddress: {
+    cus_address: {
       field: "cus_address",
       type: Sequelize.STRING
     },
-    cusPincode: {
+    cus_pincode: {
       field: "cus_pincode",
       type: Sequelize.STRING
     },
-     cusCountry: {
+     cus_country: {
       field: "cus_country",
       type: Sequelize.STRING
     },
-    cusCreated: {
+    cus_created: {
       field: "cus_created",
       type: Sequelize.DATE
     },

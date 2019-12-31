@@ -5,17 +5,17 @@ const trxLog = sequelize.define(
   "trx_log",
   {
     id: {
-      field: "trx_id",
+      trx_id: "trx_id",
       type: Sequelize.BIGINT(11),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    trxType: {
+    trx_type: {
       field: "trx_type",
       type: Sequelize.STRING
     },
-    trxUsrId: {
+    trx_usr_id: {
       field: "trx_usr_id",
       type: Sequelize.BIGINT(11),
        references: {
@@ -23,11 +23,11 @@ const trxLog = sequelize.define(
           key: 'usr_id', // 'id' refers to column name in persons table
        }
     },
-    trxDesc: {
+    trx_desc: {
       field: "trx_desc",
       type: Sequelize.TEXT
     },
-    trxCreated: {
+    trx_created: {
       field: "trx_created",
       type: Sequelize.BIGINT(11),
        references: {
