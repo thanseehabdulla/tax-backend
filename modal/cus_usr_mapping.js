@@ -1,40 +1,32 @@
 const Sequelize = require("sequelize");
 var sequelize = require("../configurations/db");
 
-const trxLog = sequelize.define(
-  "trx_log",
+const cusUsrMapping = sequelize.define(
+  "cus_usr_mapping",
   {
     id: {
-      field: "trx_id",
+      field: "cum_id",
       type: Sequelize.BIGINT(11),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    trxType: {
-      field: "trx_type",
-      type: Sequelize.STRING
-    },
-    trxUsrId: {
-      field: "trx_usr_id",
+    cumCusId: {
+      field: "cum_cus_id",
       type: Sequelize.BIGINT(11),
        references: {
           model: 'user', // 'persons' refers to table name
           key: 'usr_id', // 'id' refers to column name in persons table
        }
     },
-    trxDesc: {
-      field: "trx_desc",
-      type: Sequelize.TEXT
-    },
-    trxCreated: {
-      field: "trx_created",
+    cumUsrId: {
+      field: "cum_usr_id",
       type: Sequelize.BIGINT(11),
        references: {
           model: 'user', // 'persons' refers to table name
           key: 'usr_id', // 'id' refers to column name in persons table
        }
-    }
+    },
   },
   {
     freezeTableName: true,
@@ -42,4 +34,4 @@ const trxLog = sequelize.define(
   }
 );
 
-module.exports = trxLog;
+module.exports = cusUsrMapping;
