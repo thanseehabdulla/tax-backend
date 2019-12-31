@@ -9,6 +9,7 @@ var usersRouter = require("./routes/users");
 var customersRouter = require("./routes/customers");
 var currencyRouter = require("./routes/currency");
 var invoicesRouter = require("./routes/invoice");
+var taxRouter = require("./routes/tax");
 var cors = require("cors");
 var jwt = require("jsonwebtoken");
 var userHelper = require("./controllers/user");
@@ -171,6 +172,12 @@ app.use(
   "/api/v1/currency",
   passport.authenticate("jwt", { session: false }),
   currencyRouter
+);
+
+app.use(
+  "/api/v1/tax",
+  passport.authenticate("jwt", { session: false }),
+  taxRouter
 );
 
 app.use(
