@@ -9,6 +9,7 @@ var usersRouter = require("./routes/users");
 var customersRouter = require("./routes/customers");
 var currencyRouter = require("./routes/currency");
 var invoicesRouter = require("./routes/invoice");
+var invoicelinesRouter = require("./routes/invoicelines");
 var taxRouter = require("./routes/tax");
 var cors = require("cors");
 var jwt = require("jsonwebtoken");
@@ -184,6 +185,12 @@ app.use(
   "/api/v1/invoices",
   passport.authenticate("jwt", { session: false }),
   invoicesRouter
+);
+
+app.use(
+  "/api/v1/invoiceslines",
+  passport.authenticate("jwt", { session: false }),
+  invoicelinesRouter
 );
 
 // catch 404 and forward to error handler
