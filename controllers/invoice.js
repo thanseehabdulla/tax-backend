@@ -82,9 +82,10 @@ const invoiceHelper = {
     return await Invoice.update(
       {
         inv_status
+      },
       { where: { inv_id: inv_id } }
     );
-  }
+  },
   deleteInvoice: async ({ inv_id }) => {
     return await Invoice.destroy({ where: { inv_id: inv_id } });
   },
