@@ -25,6 +25,7 @@ router.get("/get/:id", function(req, res, next) {
 
 router.post("/update", function(req, res, next) {
   const {
+    usr_id,
     usr_name,
     usr_ssn,
     usr_email,
@@ -34,6 +35,7 @@ router.post("/update", function(req, res, next) {
   } = req.body;
   userHelper
     .updateUser({
+      usr_id,
       usr_name,
       usr_ssn,
       usr_email,
@@ -51,9 +53,9 @@ router.post("/update", function(req, res, next) {
 });
 
 router.post("/delete", function(req, res, next) {
-  const { usr_email } = req.body;
+  const { usr_id } = req.body;
   userHelper
-    .deleteUser({ usr_email })
+    .deleteUser({ usr_id })
     .then(user => {
       if (user[0]) res.json({ user, msg: "user deleted successfully" });
       else res.json({ user, msg: "user delete error" });

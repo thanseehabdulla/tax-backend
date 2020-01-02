@@ -9,8 +9,6 @@ const User = sequelize.define(
       type: Sequelize.BIGINT(11),
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false,
-      default:"1"
     },
     usr_ssn: {
       field: "usr_ssn",

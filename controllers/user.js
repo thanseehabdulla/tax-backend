@@ -22,13 +22,14 @@ const userHelper = {
       usr_status
     });
   },
-  updatePasswordUser: async ({ usr_email, usr_password, usr_api_password }) => {
+  updatePasswordUser: async ({ usr_id, usr_password, usr_api_password }) => {
     return await User.update(
       { usr_password, usr_api_password },
-      { where: { usr_email: usr_email } }
+      { where: { usr_id: usr_id } }
     );
   },
   updateUser: async ({
+    usr_id,
     usr_name,
     usr_ssn,
     usr_email,
@@ -40,15 +41,16 @@ const userHelper = {
       {
         usr_name,
         usr_ssn,
+        usr_email,
         usr_type,
         usr_isactive,
         usr_status
       },
-      { where: { usr_email: usr_email } }
+      { where: { usr_id: usr_id } }
     );
   },
-  deleteUser: async ({ usr_email }) => {
-    return await User.destroy({ where: { usr_email: usr_email } });
+  deleteUser: async ({ usr_id }) => {
+    return await User.destroy({ where: { usr_id: usr_id } });
   },
   getAllUsers: async () => {
     return await User.findAll();
