@@ -25,6 +25,7 @@ router.get("/get/:id", function(req, res, next) {
 
 router.post("/update", function(req, res, next) {
   const { trx_id, trx_type, trx_usr_id, trx_desc } = req.body;
+  console.log("Alert1")
   trxHelper
     .updateTrx({
       trx_id,
@@ -33,6 +34,7 @@ router.post("/update", function(req, res, next) {
       trx_desc
     })
     .then(trx => {
+  console.log("Alert2")
       if (trx[0]) res.json({ trx, msg: "trx updated successfully" });
       else res.json({ trx, msg: "trx update error" });
     })

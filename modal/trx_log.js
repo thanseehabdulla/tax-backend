@@ -9,7 +9,6 @@ const trxLog = sequelize.define(
       type: Sequelize.BIGINT(11),
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
     },
     trx_type: {
       field: "trx_type",
@@ -29,11 +28,7 @@ const trxLog = sequelize.define(
     },
     trx_created: {
       field: "trx_created",
-      type: Sequelize.BIGINT(11),
-       references: {
-          model: 'user', // 'persons' refers to table name
-          key: 'usr_id', // 'id' refers to column name in persons table
-       }
+      type: Sequelize.DATE,
     }
   },
   {

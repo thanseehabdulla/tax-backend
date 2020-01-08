@@ -6,7 +6,7 @@ const trxHelper = {
       trx_type, trx_usr_id, trx_desc
     });
   },
-  updateTrx: async ({ trx_id, crc_code, crc_name }) => {
+  updateTrx: async ({ trx_id, trx_type, trx_usr_id, trx_desc }) => {
     return await Trx.update(
       { trx_type, trx_usr_id, trx_desc },
       { where: { trx_id: trx_id } }
