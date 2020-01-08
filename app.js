@@ -178,13 +178,13 @@ app.use(
 );
 
 app.use(
-  "/api/v1/tax",
+  "/api/v1/taxs",
   passport.authenticate("jwt", { session: false }),
   taxRouter
 );
 
 app.use(
-  "/api/v1/trxlog",
+  "/api/v1/trx",
   passport.authenticate("jwt", { session: false }),
   trxLogRouter
 );

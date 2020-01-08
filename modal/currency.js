@@ -4,18 +4,18 @@ var sequelize = require("../configurations/db");
 const Currency = sequelize.define(
   "currency",
   {
-    id: {
+    crc_id: {
       field: "crc_id",
       type: Sequelize.BIGINT(11),
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    crcCode: {
+    crc_code: {
       field: "crc_code",
       type: Sequelize.STRING
     },
-    crcName: {
+    crc_name: {
       field: "crc_name",
       type: Sequelize.STRING
     }

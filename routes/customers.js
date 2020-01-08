@@ -42,8 +42,8 @@ router.post("/update", function(req, res, next) {
       cus_country
     })
     .then(user => {
-      if (user[0]) res.json({ user, msg: "user updated successfully" });
-      else res.json({ user, msg: "user update error" });
+      if (user[0]) res.json({ user, msg: "customer updated successfully" });
+      else res.json({ user, msg: "customer update error" });
     })
     .catch(e => {
       res.status(401).json(e);

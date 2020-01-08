@@ -25,7 +25,7 @@ router.get("/get/:id", function(req, res, next) {
 
 router.post("/update", function(req, res, next) {
   const { tax_id, tax_name, tax_perc, tax_isactive } = req.body;
-  currencyHelper
+  taxHelper
     .updateTax({
       tax_id,
       tax_name,

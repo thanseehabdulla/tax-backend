@@ -8,7 +8,7 @@ const customerHelper = {
       cus_ssn, cus_name, cus_address, cus_pincode, cus_country
     });
   },
-  updateUser: async ({ cus_ssn, cus_name, cus_address, cus_pincode, cus_country }) => {
+  updateUser: async ({cus_id,cus_ssn, cus_name, cus_address, cus_pincode, cus_country }) => {
     return await User.update(
       { cus_ssn, cus_name, cus_address, cus_pincode, cus_country },
       { where: { cus_id: cus_id } }

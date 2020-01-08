@@ -4,7 +4,7 @@ var sequelize = require("../configurations/db");
 const trxLog = sequelize.define(
   "trx_log",
   {
-    id: {
+    trx_id: {
       trx_id: "trx_id",
       type: Sequelize.BIGINT(11),
       primaryKey: true,
