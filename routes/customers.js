@@ -64,9 +64,9 @@ router.post("/delete", function(req, res, next) {
 });
 
 router.post("/create", function(req, res, next) {
-  const { cus_ssn, cus_name, cus_address, cus_pincode, cus_country } = req.body;
+  const { cus_ssn, cus_name, cus_address, cus_pincode, cus_country, cus_usr_id } = req.body;
   customerHelper
-    .createUser({ cus_ssn, cus_name, cus_address, cus_pincode, cus_country })
+    .createUser({ cus_ssn, cus_name, cus_address, cus_pincode, cus_country, cus_usr_id })
     .then(user => res.json({ user, msg: "user created successfully" }))
     .catch(e => {
       res.status(401).json(e);

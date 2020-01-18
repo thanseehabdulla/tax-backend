@@ -2,10 +2,10 @@ var User = require("./../modal/customer");
 
 const customerHelper = {
   createUser: async ({
-    cus_ssn, cus_name, cus_address, cus_pincode, cus_country
+    cus_ssn, cus_name, cus_address, cus_pincode, cus_country,cus_usr_id
   }) => {
     return await User.create({
-      cus_ssn, cus_name, cus_address, cus_pincode, cus_country
+      cus_ssn, cus_name, cus_address, cus_pincode, cus_country,cus_usr_id
     });
   },
   updateUser: async ({cus_id,cus_ssn, cus_name, cus_address, cus_pincode, cus_country }) => {

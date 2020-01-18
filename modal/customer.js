@@ -15,6 +15,14 @@ const Customer = sequelize.define(
       field: "cus_ssn",
       type: Sequelize.STRING
     },
+    cus_usr_id:{
+      field: "cus_usr_id",
+      type: Sequelize.BIGINT(11),
+       references: {
+          model: 'user', // 'persons' refers to table name
+          key: 'usr_id', // 'id' refers to column name in persons table
+       }
+    },
     cus_name: {
       field: "cus_name",
       type: Sequelize.STRING
