@@ -14,12 +14,13 @@ router.get("/", function(req, res, next) {
     .catch(err => res.send("Unable to connect to the database:" + err));
 });
 
-router.get("/getall", function(req, res, next) {
-  invoiceHelper.getAllInvoices().then(invoice => res.json(invoice));
+router.get("/getall/:id", function(req, res, next) {
+const inl_created_by = req.params.id;  
+invoiceHelper.getAllInvoices({inl_created_by:inl_created_by}).then(invoice => res.json(invoice));
 });
 
 router.get("/get/:id", function(req, res, next) {
-  const { inl_id } = req.params.id;
+  const  inl_id  = req.params.id;
   invoiceHelper
     .getInvoice({ inl_id: inl_id })
     .then(invoice => res.json(invoice));

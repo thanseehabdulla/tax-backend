@@ -54,8 +54,8 @@ const invoiceHelper = {
   deleteInvoice: async ({ inl_id }) => {
     return await Invoice.destroy({ where: { inl_id: inl_id } });
   },
-  getAllInvoices: async () => {
-    return await Invoice.findAll();
+  getAllInvoices: async (obj) => {
+    return await Invoice.findAll({where:obj});
   },
   getInvoice: async obj => {
     return await Invoice.findOne({
