@@ -17,8 +17,8 @@ const customerHelper = {
   deleteUser: async ({ cus_id }) => {
     return await User.destroy({ where: { cus_id: cus_id } });
   },
-  getAllUsers: async () => {
-    return await User.findAll();
+  getAllUsers: async (obj) => {
+    return await User.findAll({where: obj});
   },
   getUser: async obj => {
     return await User.findOne({

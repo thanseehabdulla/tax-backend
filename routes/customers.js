@@ -14,8 +14,9 @@ router.get("/", function(req, res, next) {
     .catch(err => res.send("Unable to connect to the database:" + err));
 });
 
-router.get("/getall", function(req, res, next) {
-  customerHelper.getAllUsers().then(user => res.json(user));
+router.get("/getall/:id", function(req, res, next) {
+  const usr_id = req.params.id;
+  customerHelper.getAllUsers({cus_usr_id:usr_id}).then(user => res.json(user));
 });
 
 router.get("/get/:id", function(req, res, next) {

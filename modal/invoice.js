@@ -11,14 +11,6 @@ const Invoice = sequelize.define(
       autoIncrement: true,
       allowNull: false
     },
-    inv_user_id: {
-      field: "inv_user_id",
-      type: Sequelize.BIGINT(11),
-       references: {
-          model: 'user', // 'persons' refers to table name
-          key: 'usr_id', // 'id' refers to column name in persons table
-       }
-    },
     inv_customer_ssn: {
       field: "inv_customer_ssn",
       type: Sequelize.STRING
@@ -82,11 +74,10 @@ const Invoice = sequelize.define(
     inv_created_by: {
       field: "inv_created_by",
       type: Sequelize.BIGINT(11),
-       references: {
+      references: {
           model: 'user', // 'persons' refers to table name
           key: 'usr_id', // 'id' refers to column name in persons table
-       }
-    },
+       }},
     inv_created: {
       field: "inv_created",
       type: Sequelize.DATE
@@ -94,11 +85,10 @@ const Invoice = sequelize.define(
     inv_updated_by: {
       field: "inv_updated_by",
       type: Sequelize.BIGINT(11),
-       references: {
+     references: {
           model: 'user', // 'persons' refers to table name
           key: 'usr_id', // 'id' refers to column name in persons table
-       }
-    },
+       } },
     inv_updated: {
       field: "inv_updated",
       type: Sequelize.DATE

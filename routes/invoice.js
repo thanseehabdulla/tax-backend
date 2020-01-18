@@ -14,12 +14,14 @@ router.get("/", function(req, res, next) {
     .catch(err => res.send("Unable to connect to the database:" + err));
 });
 
-router.get("/getall", function(req, res, next) {
-  invoiceHelper.getAllInvoices().then(invoice => res.json(invoice));
+router.get("/getall/:id", function(req, res, next) {
+const inv_created_by = req.params.id;  
+console.log("params",req.params.id);
+invoiceHelper.getAllInvoices({inv_created_by:inv_created_by}).then(invoice => res.json(invoice)).catch(e=>res.json(e));
 });
 
 router.get("/get/:id", function(req, res, next) {
-  const { inv_id } = req.params.id;
+  const inv_id = req.params.id;
   invoiceHelper
     .getInvoice({ inv_id: inv_id })
     .then(invoice => res.json(invoice));
@@ -27,7 +29,6 @@ router.get("/get/:id", function(req, res, next) {
 
 router.post("/create", function(req, res, next) {
   const {
-    inv_user_id,
     inv_customer_ssn,
     inv_customer_name,
     inv_cum_id,
@@ -40,13 +41,12 @@ router.post("/create", function(req, res, next) {
     inv_desc,
     inv_status,
     inv_isdelete,
-    inv_created,
-    inv_updated
+    inv_created_by,
+    inv_updated_by
   } = req.body;
   invoiceHelper
     .createInvoice({
-      inv_user_id,
-      inv_customer_ssn,
+       inv_customer_ssn,
       inv_customer_name,
       inv_cum_id,
       inv_type,
@@ -58,20 +58,20 @@ router.post("/create", function(req, res, next) {
       inv_desc,
       inv_status,
       inv_isdelete,
-      inv_created,
-      inv_updated
+      inv_created_by,
+      inv_updated_by
     })
     .then(invoice => res.json({ invoice, msg: "invoice created successfully" }))
     .catch(e => {
-      res.status(401).json(e);
+console.log("err",e);     
+ res.status(401).json(e);
     });
 });
 
 router.post("/update", function(req, res, next) {
   const {
     inv_id,
-    inv_user_id,
-    inv_customer_ssn,
+     inv_customer_ssn,
     inv_customer_name,
     inv_cum_id,
     inv_type,
@@ -89,7 +89,6 @@ router.post("/update", function(req, res, next) {
   invoiceHelper
     .updateInvoice({
       inv_id,
-      inv_user_id,
       inv_customer_ssn,
       inv_customer_name,
       inv_cum_id,

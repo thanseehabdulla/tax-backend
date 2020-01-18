@@ -14,8 +14,9 @@ router.get("/", function(req, res, next) {
     .catch(err => res.send("Unable to connect to the database:" + err));
 });
 
-router.get("/getall", function(req, res, next) {
-  trxHelper.getAllTrx().then(trx => res.json(trx));
+router.get("/getall/:id", function(req, res, next) {
+    const trx_usr_id = req.params.id;
+    trxHelper.getAllTrx({trx_usr_id:trx_usr_id}).then(trx => res.json(trx));
 });
 
 router.get("/get/:id", function(req, res, next) {

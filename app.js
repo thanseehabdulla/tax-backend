@@ -202,7 +202,7 @@ app.use(
 );
 
 app.use(
-  "/api/v1/invoiceslines",
+  "/api/v1/inl",
   passport.authenticate("jwt", { session: false }),
   invoicelinesRouter
 );

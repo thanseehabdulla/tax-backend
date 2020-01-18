@@ -15,8 +15,8 @@ const trxHelper = {
   deleteTrx: async ({ trx_id }) => {
     return await Trx.destroy({ where: { trx_id: trx_id } });
   },
-  getAllTrx: async () => {
-    return await Trx.findAll();
+  getAllTrx: async (obj) => {
+    return await Trx.findAll({where:obj});
   },
   getTrx: async obj => {
     return await Trx.findOne({

@@ -2,7 +2,6 @@ var Invoice = require("./../modal/invoice");
 
 const invoiceHelper = {
   createInvoice: async ({
-    inv_user_id,
     inv_customer_ssn,
     inv_customer_name,
     inv_cum_id,
@@ -15,11 +14,10 @@ const invoiceHelper = {
     inv_desc,
     inv_status,
     inv_isdelete,
-    inv_created,
-    inv_updated
+    inv_created_by,
+    inv_updated_by
   }) => {
     return await Invoice.create({
-      inv_user_id,
       inv_customer_ssn,
       inv_customer_name,
       inv_cum_id,
@@ -32,13 +30,12 @@ const invoiceHelper = {
       inv_desc,
       inv_status,
       inv_isdelete,
-      inv_created,
-      inv_updated
+      inv_created_by,
+      inv_updated_by
     });
   },
   updateInvoice: async ({
     inv_id,
-    inv_user_id,
     inv_customer_ssn,
     inv_customer_name,
     inv_cum_id,
@@ -56,7 +53,6 @@ const invoiceHelper = {
   }) => {
     return await Invoice.update(
       {
-        inv_user_id,
         inv_customer_ssn,
         inv_customer_name,
         inv_cum_id,
@@ -89,8 +85,9 @@ const invoiceHelper = {
   deleteInvoice: async ({ inv_id }) => {
     return await Invoice.destroy({ where: { inv_id: inv_id } });
   },
-  getAllInvoices: async () => {
-    return await Invoice.findAll();
+  getAllInvoices: async (obj) => {
+            console.log("param2",obj)
+    return await Invoice.findAll({where:obj});
   },
   getInvoice: async obj => {
     return await Invoice.findOne({
